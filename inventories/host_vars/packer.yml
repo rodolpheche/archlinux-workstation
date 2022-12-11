@@ -1,0 +1,3 @@
+target_device: /dev/vda
+target_boot_part: /dev/vda1
+target_root_part: /dev/vda2

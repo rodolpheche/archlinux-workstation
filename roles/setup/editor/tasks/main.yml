@@ -1,0 +1,17 @@
+- name: Install editor packages
+  become: yes
+  pacman:
+    name:
+      - vi
+      - vim
+      - code
+
+- name: Copy vim bash_profile
+  copy:
+    src: vim.bash_profile
+    dest: ~/.bash_profile.d/
+
+- name: Copy vim bashrc
+  copy:
+    src: vim.bashrc
+    dest: ~/.bashrc.d/

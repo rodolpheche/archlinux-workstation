@@ -1,0 +1,14 @@
+- name: Ensure locale exists
+  locale_gen:
+    name: '{{ locale }}'
+
+- name: Copy locale.conf
+  template:
+    src: locale.conf.j2
+    dest: /etc/locale.conf
+
+- name: Copy vconsole.conf
+  template:
+    src: vconsole.conf.j2
+    dest: /etc/vconsole.conf
+  when: keymap is defined

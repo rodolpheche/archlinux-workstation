@@ -1,0 +1,33 @@
+- name: Setup
+  hosts: all
+  vars:
+    ansible_user: '{{ unix_username }}'
+    ansible_ssh_pass: '{{ unix_password }}'
+  roles:
+    - role: aur
+    - role: browser
+    - role: cli
+    - role: dev
+    - role: display
+    - role: dotfiles
+    - role: editor
+    - role: font
+    - role: git
+    - role: misc
+    - role: notification
+    - role: rust
+    - role: sound
+    - role: term
+    - role: ops
+
+- name: Disable ssh
+  hosts: all
+  vars:
+    ansible_user: '{{ unix_username }}'
+    ansible_ssh_pass: '{{ unix_password }}'
+  become: yes
+  tasks:
+    - name: Disable ssh systemd services
+      systemd:
+        name: 'sshd'
+        enabled: no

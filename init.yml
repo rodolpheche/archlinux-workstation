@@ -1,0 +1,23 @@
+- name: Bootstrap
+  hosts: all
+  vars:
+    ansible_user: root
+    ansible_ssh_pass: '{{ archlinux_live_root_password }}'
+  roles:
+    - bootstrap
+
+- name: Minimal setup
+  hosts: all
+  vars:
+    ansible_python_interpreter: /root/ansible-python-interpreter-chroot
+    ansible_user: root
+    ansible_ssh_pass: '{{ archlinux_live_root_password }}'
+  roles:
+    - host
+    - timezone
+    - locale
+    - kernel
+    - bootloader
+    - services
+    - user
+    - network

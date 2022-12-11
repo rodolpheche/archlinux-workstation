@@ -1,0 +1,7 @@
+title      Arch Linux
+version    {{ linux_version.stdout }}
+machine-id {{ ansible_machine_id }}
+sort-key   arch
+options    root=/dev/mapper/root cryptdevice={{ target_root_part }}:root:allow-discards rw
+linux      /{{ ansible_machine_id }}/{{ linux_version.stdout }}/linux
+initrd     /{{ ansible_machine_id }}/{{ linux_version.stdout }}/initrd

@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = linux-lts
+
+[Action]
+Description = Install the kernel.
+When = PostTransaction
+Exec = /bin/bash -c 'kernel-install add `/bin/ls -1 /lib/modules | tail -1` /boot/vmlinuz-linux-lts'

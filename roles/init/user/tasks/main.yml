@@ -1,0 +1,11 @@
+- name: Create user
+  user:
+    name: '{{ unix_username }}'
+    password: '{{ unix_password | password_hash("sha512") }}'
+    groups: adm,disk,wheel,audio,video,users
+    append: yes
+
+- name: Copy sudoers conf
+  copy:
+    src: sudoers
+    dest: /etc/sudoers.d/wheel

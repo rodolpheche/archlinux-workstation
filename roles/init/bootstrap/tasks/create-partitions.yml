@@ -1,0 +1,26 @@
+- name: Create boot partition
+  parted:
+    device: '{{ target_device }}'
+    number: 1
+    label: gpt
+    fs_type: fat32
+    part_end: 513MiB
+    state: present
+
+- name: Create root partition
+  parted:
+    device: '{{ target_device }}'
+    number: 2
+    label: gpt
+    fs_type: ext4
+    part_start: 513MiB
+    state: present
+
+- name: Create LUKS container with a passphrase
+  luks_device:
+    device: '{{ target_root_part }}'
+    name: root
+    passphrase: '{{ crypt_passphrase }}'
+    cipher: aes-xts-plain64
+    hash: sha512
+    state: opened

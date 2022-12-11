@@ -1,0 +1,14 @@
+- name: Install rustup
+  become: yes
+  pacman:
+    name:
+      - rustup
+      - base-devel
+
+- name: Setup rust
+  shell: rustup default stable
+
+- name: Copy rust bash_profile
+  copy:
+    src: rust.bash_profile
+    dest: ~/.bash_profile.d/

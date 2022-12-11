@@ -1,0 +1,42 @@
+- name: Install misc packages
+  become: yes
+  pacman:
+    name:
+      - reflector
+      - xf86-input-synaptics
+      - bluez
+      - bluez-utils
+      - iwd
+      - ntfs-3g
+      - cpio
+      - man-db
+      - archlinux-keyring
+      - gnome-keyring
+      - dnsmasq
+      - dmidecode
+      - openbsd-netcat
+
+- name: Enable iwd systemd service
+  become: yes
+  systemd:
+    name: iwd
+    enabled: yes
+    state: started
+
+- name: Enable bluetooth systemd service
+  become: yes
+  systemd:
+    name: bluetooth
+    enabled: yes
+    state: started
+
+- name: Install ebtables
+  become: yes
+  shell: yes | pacman -Sy ebtables
+
+- name: Enable reflector systemd service
+  become: yes
+  systemd:
+    name: reflector.timer
+    enabled: yes
+    state: started

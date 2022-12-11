@@ -1,0 +1,10 @@
+- name: Set mirrors
+  shell: reflector --verbose --country "{{ country }}" -l 5 -p http --sort rate --save /etc/pacman.d/mirrorlist
+
+- name: Copy pacman configuratiion file
+  copy:
+    src: pacman.conf
+    dest: /etc/
+
+- name: Bootstrap fs
+  shell: pacstrap /mnt base linux-lts linux-firmware python openssh sudo

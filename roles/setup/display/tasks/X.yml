@@ -1,0 +1,13 @@
+- name: Install X
+  become: yes
+  pacman:
+    name:
+      - xorg-server
+      - xorg-xinit
+      - xorg-xrandr
+      - autorandr
+
+- name: Copy .xinitrc
+  copy:
+    src: .xinitrc
+    dest: ~/

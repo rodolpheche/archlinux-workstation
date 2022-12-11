@@ -1,0 +1,31 @@
+- name: Copy mkinitcpio.conf
+  template:
+    src: mkinitcpio.conf.j2
+    dest: /etc/mkinitcpio.conf
+
+- name: Retrieve Linux version
+  shell: ls -1 /lib/modules
+  register: linux_version
+
+- name: Prepare kernel directory
+  file:
+    path: /boot/{{ ansible_machine_id }}
+    state: directory
+
+- name: Install kernel to boot
+  shell: kernel-install add {{ linux_version.stdout }} /boot/vmlinuz-linux-lts
+
+- name: Copy loader.conf
+  template:
+    src: entry.conf.j2
+    dest: /boot/loader/entries/{{ ansible_machine_id }}-{{ linux_version.stdout }}.conf
+
+- name: Create pacman hook directory
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+
+- name: Copy pacman hook
+  copy:
+    src: kernel.hook
+    dest: /etc/pacman.d/hooks/kernel.hook

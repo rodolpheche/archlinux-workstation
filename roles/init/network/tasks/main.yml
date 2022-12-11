@@ -1,0 +1,21 @@
+- name: Install systemd-resolved
+  pacman:
+    name: systemd-resolvconf
+
+- name: Link resolv on systemd stub for compatibility with traditional Linux programs
+  file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    force: true
+    follow: false
+    state: link
+
+- name: Copy systemd-networkd configuration file for wired interfaces
+  copy:
+    src: 10-wired.network
+    dest: /etc/systemd/network
+
+- name: Copy systemd-networkd configuration file for wireless interfaces
+  copy:
+    src: 20-wireless.network
+    dest: /etc/systemd/network

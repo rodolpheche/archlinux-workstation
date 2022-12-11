@@ -1,0 +1,38 @@
+- name: Install i3 packages
+  become: yes
+  pacman:
+    name:
+      - i3-gaps
+      - i3status-rust
+      - i3lock
+      - xss-lock
+      - dmenu
+      - maim
+      - xdotool
+
+- name: Copy i3 config
+  copy:
+    src: 'i3/config'
+    dest: ~/.config/i3/
+
+- name: Copy i3 brightness binary
+  copy:
+    src: 'i3/brightness.sh'
+    dest: ~/.config/i3/
+    mode: 0755
+
+- name: Copy i3 volume binary
+  copy:
+    src: 'i3/volume.sh'
+    dest: ~/.config/i3/
+    mode: 0755
+
+- name: Copy i3status-rust config
+  copy:
+    src: 'i3status-rust/config.toml'
+    dest: ~/.config/i3status-rust/
+
+- name: Copy wallpaper
+  copy:
+    src: linux.png
+    dest: ~/Pictures/Wallpapers/

@@ -1,0 +1,15 @@
+# This because of extensive use of the --print-format :
+# https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
+- name: Install nvm AUR package
+  shell: paru -Syu --noconfirm --nouseask nvm
+
+- name: Install Node
+  shell: source /usr/share/nvm/init-nvm.sh && nvm install node && nvm alias default node
+
+- name: Install yarn
+  shell: source /usr/share/nvm/init-nvm.sh && npm install -g yarn
+
+- name: Copy nvm bashrc
+  copy:
+    src: nvm.bashrc
+    dest: ~/.bashrc.d/

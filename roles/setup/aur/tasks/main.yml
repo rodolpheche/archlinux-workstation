@@ -1,0 +1,23 @@
+- name: Copy makepkg configuration
+  become: yes
+  copy:
+    src: makepkg.conf
+    dest: /etc/
+
+- name: Check if paru installed
+  stat:
+    path: /usr/bin/paru
+  register: paru_stat
+
+- block:
+  - name: Clone paru repository
+    git:
+      repo: https://aur.archlinux.org/paru.git
+      dest: /tmp/paru
+
+  - name: Make paru
+    shell: makepkg -si --noconfirm
+    args:
+      chdir: /tmp/paru/
+
+  when: not paru_stat.stat.exists

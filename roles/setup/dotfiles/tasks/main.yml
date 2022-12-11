@@ -1,0 +1,23 @@
+- name: Copy .bashrc
+  copy:
+    src: .bashrc
+    dest: ~/
+
+- name: Copy .bash_profile
+  copy:
+    src: .bash_profile
+    dest: ~/
+
+- name: Create .bashrc.d directory
+  file:
+    path: ~/.bashrc.d
+    mode: 0700
+    force: true
+    state: directory
+
+- name: Create .bash_profile.d directory
+  file:
+    path: ~/.bash_profile.d
+    mode: 0700
+    force: true
+    state: directory

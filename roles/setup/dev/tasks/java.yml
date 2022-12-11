@@ -1,0 +1,6 @@
+- name: Install java packages
+  become: yes
+  pacman:
+    name:
+      - jdk11-openjdk
+      - maven

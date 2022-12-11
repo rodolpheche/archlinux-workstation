@@ -1,0 +1,9 @@
+- name: Install misc
+  become: yes
+  pacman:
+    name:
+      - brightnessctl
+      - feh
+      - thunar
+      - file-roller
+      - vlc

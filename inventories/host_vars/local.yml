@@ -1,0 +1,5 @@
+ansible_connection: local
+
+target_device: /dev/nvme0n1
+target_boot_part: /dev/nvme0n1p1
+target_root_part: /dev/nvme0n1p2

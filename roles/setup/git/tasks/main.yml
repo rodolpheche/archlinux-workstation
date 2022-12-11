@@ -1,0 +1,14 @@
+- name: Install git
+  become: yes
+  pacman:
+    name: git
+
+- name: Create git config directory
+  file:
+    path: ~/.config/git
+    state: directory
+
+- name: Copy git config
+  template:
+    src: config.j2
+    dest: ~/.config/git/config

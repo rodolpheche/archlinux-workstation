@@ -1,0 +1,31 @@
+- name: Install cli packages
+  become: yes
+  pacman:
+    name:
+      - bash-completion
+      - btop
+      - neofetch
+      - exa
+      - bat
+      - fzf
+      - bc
+      - zip
+      - nmap
+      - tcpdump
+      - fwupd
+
+- name: Copy bat bashrc
+  copy:
+    src: bat.bashrc
+    dest: ~/.bashrc.d/
+
+- name: Copy exa bashrc
+  copy:
+    src: exa.bashrc
+    dest: ~/.bashrc.d/
+
+
+- name: Copy fzf bashrc
+  copy:
+    src: fzf.bashrc
+    dest: ~/.bashrc.d/

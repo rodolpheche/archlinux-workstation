@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+cp -rf /root/.ansible /mnt/root
+
+# launch a systemd user container instead of chroot
+exec systemd-nspawn --pipe --timezone=off -D /mnt /usr/bin/python3 "$@"

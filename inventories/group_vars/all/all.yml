@@ -1,0 +1,16 @@
+ansible_python_interpreter: /usr/bin/python3
+
+# Credentials
+archlinux_live_root_password: root # type this command on your live archlinux: "echo 'root:root' | chpasswd"
+crypt_passphrase: password
+unix_username: username
+unix_password: password
+
+# Misc
+machine_hostname: archlinux-workstation
+country: fr
+locale: en_US.UTF-8
+timezone: Europe/Paris
+# keymap: fr
+git_user_name: username
+git_user_email: email@domain.com

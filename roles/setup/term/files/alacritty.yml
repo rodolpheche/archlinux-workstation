@@ -1,0 +1,29 @@
+shell:
+  program: /bin/bash
+  args:
+    - -l
+    - -c
+    - "tmux ls | grep -v attached && tmux attach || tmux"
+
+font:
+  normal:
+    family: Roboto Mono
+    style: Regular
+
+  bold:
+    family: Roboto Mono
+    style: Bold
+
+  italic:
+    family: Roboto Mono
+    style: Italic
+
+  bold_italic:
+    family: Roboto Mono
+    style: Bold Italic
+
+  size: 11
+
+colors:
+  primary:
+    background: '#000000'

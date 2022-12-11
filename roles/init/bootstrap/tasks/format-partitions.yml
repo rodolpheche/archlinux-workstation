@@ -1,0 +1,10 @@
+- name: Create a fat32 filesystem on boot partition
+  filesystem:
+    fstype: vfat
+    opts: -F32
+    dev: '{{target_boot_part}}'
+
+- name: Create a ext4 filesystem on root partition
+  filesystem:
+    fstype: ext4
+    dev: /dev/mapper/root

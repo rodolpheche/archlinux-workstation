@@ -1,0 +1,9 @@
+- name: Install dunst
+  become: yes
+  pacman:
+    name: dunst
+
+- name: Copy dunstrc config file
+  copy:
+    src: dunstrc
+    dest: ~/.config/dunst/

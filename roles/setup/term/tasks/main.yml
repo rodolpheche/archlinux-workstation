@@ -1,0 +1,31 @@
+- name: Install packages
+  become: yes
+  pacman:
+    name:
+      - alacritty
+      - tmux
+
+# This because of extensive use of the --print-format :
+# https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
+- name: Install tmux-bash-completion-git AUR package
+  shell: paru -Syu --noconfirm --nouseask tmux-bash-completion-git
+
+- name: Copy ps1.bashrc
+  copy:
+    src: ps1.bashrc
+    dest: ~/.bashrc.d/
+
+- name: Copy tmux conf
+  copy:
+    src: tmux.conf
+    dest: ~/.config/tmux/
+
+- name: Copy alacritty conf
+  copy:
+    src: alacritty.yml
+    dest: ~/.config/alacritty/
+
+- name: Copy alacritty bash_profile
+  copy:
+    src: alacritty.bash_profile
+    dest: ~/.bash_profile.d/

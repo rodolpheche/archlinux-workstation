@@ -1,0 +1,5 @@
+dependencies:
+  - role: aur
+  - role: font
+  - role: display
+  - role: sound

@@ -1,0 +1,52 @@
+- name: Install ops packages
+  become: yes
+  pacman:
+    name:
+    - edk2-ovmf
+    - libvirt
+    - libguestfs
+    - virt-manager
+    - virt-viewer
+    - qemu
+    - qemu-ui-gtk
+    - packer
+    - terraform
+    - ansible
+    - sshpass
+    - python-passlib
+    - docker
+    - docker-compose
+
+- name: Enable libvirtd systemd service
+  become: yes
+  systemd:
+    name: libvirtd
+    enabled: yes
+    state: started
+
+- name: Copy bridge.conf
+  become: yes
+  copy:
+    src: bridge.conf
+    dest: /etc/qemu/bridge.conf
+
+- name: Add user to libvirt group
+  become: yes
+  user:
+    name: '{{ unix_username }}'
+    groups: libvirt
+    append: yes
+
+- name: Enable docker systemd service
+  become: yes
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Add user to docker group
+  become: yes
+  user:
+    name: '{{ unix_username }}'
+    groups: docker
+    append: yes
