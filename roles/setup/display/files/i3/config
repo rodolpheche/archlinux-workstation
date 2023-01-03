@@ -229,4 +229,4 @@ gaps inner 8
 default_border pixel 2
 
 # Shutdown menu
-bindsym $mod+Escape exec --no-startup-id "systemctl `echo -e 'Suspend\nPoweroff\nReboot' | dmenu`"
+bindsym $mod+Escape exec --no-startup-id "systemctl `echo -e 'Suspend\nPoweroff\nReboot' | dmenu | tr A-Z a-z`"
