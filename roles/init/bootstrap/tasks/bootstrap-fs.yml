@@ -4,7 +4,7 @@
 - name: Copy pacman configuratiion file
   copy:
     src: pacman.conf
-    dest: /etc/
+    dest: /mnt/etc/
 
 - name: Bootstrap fs
   shell: pacstrap /mnt base linux-lts linux-firmware python openssh sudo
