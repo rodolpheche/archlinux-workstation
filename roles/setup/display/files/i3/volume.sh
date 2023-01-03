@@ -1,11 +1,11 @@
 #!/bin/bash
 
 function get_volume {
-  pactl get-sink-volume 0 | head -1 | sed -E 's/^.* ([0-9]+)% .*/\1/'
+  pactl get-sink-volume "$(pactl get-default-sink)" | head -1 | sed -E 's/^.* ([0-9]+)% .*/\1/'
 }
 
 function is_mute {
-  pactl get-sink-mute 0 | grep yes
+  pactl get-sink-mute "$(pactl get-default-sink)" | grep yes
 }
 
 function send_notification {
@@ -31,30 +31,21 @@ function send_notification {
 case $1 in
     up)
       VOLUME='+5%'
-      for SINK in $(pactl list sinks short | cut -b1)
-      do
-        pactl set-sink-mute "$SINK" false
-        if [ "$(get_volume)" -lt 120 ]
-        then
-          pactl set-sink-volume "$SINK" $VOLUME
-        fi
-      done
+      pactl set-sink-mute "$(pactl get-default-sink)" false
+      if [ "$(get_volume)" -lt 120 ]
+      then
+        pactl set-sink-volume "$(pactl get-default-sink)" $VOLUME
+      fi
       send_notification
       ;;
     down)
       VOLUME='-5%'
-      for SINK in $(pactl list sinks short | cut -b1)
-      do
-        pactl set-sink-mute "$SINK" false
-        pactl set-sink-volume "$SINK" $VOLUME
-      done
+      pactl set-sink-mute "$(pactl get-default-sink)" false
+      pactl set-sink-volume "$(pactl get-default-sink)" $VOLUME
       send_notification
       ;;
     toggle)
-      for SINK in $(pactl list sinks short | cut -b1)
-      do
-        pactl set-sink-mute "$SINK" toggle
-      done
+      pactl set-sink-mute "$(pactl get-default-sink)" toggle
       if is_mute ; then
         dunstify -i audio-volume-muted -t 1000 -r 4242 -u normal "Mute" -h int:value:0
       else
