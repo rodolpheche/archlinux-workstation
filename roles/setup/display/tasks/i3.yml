@@ -2,7 +2,7 @@
   become: yes
   pacman:
     name:
-      - i3-gaps
+      - i3-wm
       - i3status-rust
       - i3lock
       - xss-lock
