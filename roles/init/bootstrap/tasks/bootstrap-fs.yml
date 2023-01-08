@@ -1,5 +1,5 @@
 - name: Set mirrors
-  shell: reflector --verbose --country "{{ country }}" -l 5 -p http --sort rate --save /etc/pacman.d/mirrorlist
+  shell: reflector --verbose --save /etc/pacman.d/mirrorlist --latest 5 --protocol https --sort age
 
 - name: Copy pacman configuratiion file
   copy:
