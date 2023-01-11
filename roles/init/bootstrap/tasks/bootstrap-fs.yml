@@ -1,7 +1,7 @@
 - name: Set mirrors
   shell: reflector --verbose --save /etc/pacman.d/mirrorlist --latest 5 --protocol https --sort age
 
-- name: Copy pacman configuratiion file
+- name: Copy pacman configuration file
   copy:
     src: pacman.conf
     dest: /mnt/etc/
