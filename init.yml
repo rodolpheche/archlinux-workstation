@@ -2,7 +2,7 @@
   hosts: all
   vars:
     ansible_user: root
-    ansible_ssh_pass: '{{ archlinux_live_root_password }}'
+    ansible_ssh_pass: root
   roles:
     - bootstrap
 
@@ -11,7 +11,7 @@
   vars:
     ansible_python_interpreter: /root/ansible-python-interpreter-chroot
     ansible_user: root
-    ansible_ssh_pass: '{{ archlinux_live_root_password }}'
+    ansible_ssh_pass: root
   roles:
     - host
     - timezone
