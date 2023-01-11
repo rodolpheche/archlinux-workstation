@@ -1,6 +1,6 @@
 # Archlinux Workstation
 
-Personnal project to setup Archlinux OS on my workstation.
+Project to setup Archlinux OS on my workstation.
 
 Feel free to fork and custom it for your needs.
 
