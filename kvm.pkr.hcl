@@ -13,8 +13,8 @@ locals {
 source "qemu" "kvm-init" {
   vm_name = "archlinux-workstation"
   headless = "${local.headless}"
-  cpus = "6"
-  memory = "8192"
+  cpus = "2"
+  memory = "4096"
   disk_size = 20000
   firmware = "${local.firmware}"
   iso_url = "${local.iso_url}"
@@ -34,8 +34,8 @@ source "qemu" "kvm-init" {
 source "qemu" "kvm-setup" {
   vm_name = "archlinux-workstation"
   headless = "${local.headless}"
-  cpus = "6"
-  memory = "8192"
+  cpus = "2"
+  memory = "4096"
   disk_size = 20000
   disk_image = true
   firmware = "${local.firmware}"
