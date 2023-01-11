@@ -8,6 +8,6 @@
       - autorandr
 
 - name: Copy .xinitrc
-  copy:
-    src: .xinitrc
-    dest: ~/
+  template:
+    src: .xinitrc.j2
+    dest: ~/.xinitrc

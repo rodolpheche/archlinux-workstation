@@ -12,3 +12,5 @@ timezone: Europe/Paris
 # keymap: fr
 git_user_name: username
 git_user_email: email@domain.com
+primary_monitor: DP-2-1
+secondary_monitor: eDP-1

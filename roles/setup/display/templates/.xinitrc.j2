@@ -1,0 +1,10 @@
+# set default screen resolution
+xrandr --output {{ secondary_monitor }} --mode 1920x1080 --scale 1x1 --primary
+xrandr --output {{ primary_monitor }} --mode 1920x1080 --scale 1x1 --primary
+xrandr --output {{ secondary_monitor }} --mode 1920x1080 --scale 1x1 --right-of {{ primary_monitor }}
+
+# needed by dunst
+systemctl --user import-environment DISPLAY
+
+# launch i3
+exec i3

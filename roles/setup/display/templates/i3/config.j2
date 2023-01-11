@@ -222,7 +222,7 @@ exec_always --no-startup-id synclient TapButton3=2
 exec_always --no-startup-id syndaemon -i .5 -K -t -R -d
 
 # Specify afinity for workspaces & monitors
-workspace 1 output DP-2-1
+workspace 1 output {{ primary_monitor }}
 
 # Space between windows
 gaps inner 8
