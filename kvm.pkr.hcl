@@ -24,7 +24,7 @@ source "qemu" "kvm-init" {
   ssh_wait_timeout = "60m"
   boot_wait = "3s"
   boot_command = [
-    "<enter><wait40>",
+    "<enter><wait60>",
     "echo ${local.ssh_root_username}:${local.ssh_root_password} | chpasswd<enter>"
   ]
   shutdown_command = "shutdown -P now"
