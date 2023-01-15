@@ -43,7 +43,7 @@ Feel free to fork and custom it for your needs.
   - lock: i3lock
   - term: alacritty / tmux
 - GUI
-  - dmenu
+  - rofi
   - brave
   - thunar
   - file-roller
