@@ -53,9 +53,11 @@ block = "net"
 format = "{ip}{speed_down}{speed_up}"
 interval = 5
 
+{% if inventory_hostname != "packer" %}
 [[block]]
 block = "backlight"
 
+{% endif %}
 [[block]]
 block = "sound"
 driver = "pulseaudio"
