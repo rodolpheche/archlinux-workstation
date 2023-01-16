@@ -38,16 +38,18 @@ Feel free to fork and custom it for your needs.
   - init: systemd
   - sound: pulseaudio
   - bluetooth: bluez
-  - display: Xorg
+- Display
+  - server: Xorg
   - desktop: i3
+  - menu: rofi
   - lock: i3lock
-  - term: alacritty / tmux
 - GUI
-  - rofi
-  - brave
-  - thunar
-  - file-roller
-  - feh
+  - terminal: alacritty / tmux
+  - browser: brave
+  - file explorer: thunar
+  - image viewer: feh
+  - video player: vlc
+  - archive manager: file-roller
 - Dev
   - git
   - rust
@@ -59,15 +61,16 @@ Feel free to fork and custom it for your needs.
   - code
 - Ops
   - qemu
-  - libvirt
   - edk2-ovmf
+  - libvirt
   - libguestfs
   - virt-manager
   - virt-viewer
+  - qemu
   - packer
   - terraform
   - ansible
-  - docker
+  - docker / docker-compose
 
 ## Getting started
 
