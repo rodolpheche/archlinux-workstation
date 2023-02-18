@@ -15,6 +15,12 @@
       repo: https://aur.archlinux.org/paru.git
       dest: /tmp/paru
 
+  - name: Install fakeroot packages
+    become: yes
+    pacman:
+      name:
+        - fakeroot
+
   - name: Make paru
     shell: makepkg -si --noconfirm
     args:
