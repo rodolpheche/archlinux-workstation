@@ -1,7 +1,7 @@
 locals {
   firmware = "/usr/share/edk2-ovmf/x64/OVMF.fd"
-  iso_url = "https://mir.archlinux.fr/iso/2023.01.01/archlinux-2023.01.01-x86_64.iso"
-  iso_checksum = "61dbae312cf677be38a93f424c91abadd8a8ed1f3a602b697aac4c57a7872645"
+  iso_url = "https://mir.archlinux.fr/iso/2023.02.01/archlinux-2023.02.01-x86_64.iso"
+  iso_checksum = "c30718ab8e4af1a3b315ce8440f29bc3631cb67e9656cfe1e0b9fc81a5c6bf9c"
   headless = true
   crypt_passphrase = "password"
   ssh_root_username = "root"
