@@ -11,4 +11,4 @@
   template:
     src: vconsole.conf.j2
     dest: /etc/vconsole.conf
-  when: keymap is defined
+  when: keymap is defined and keymap != 'us'

@@ -16,7 +16,7 @@ BINARIES=()
 # FILES
 # This setting is similar to BINARIES above, however, files are added
 # as-is and are not parsed in any way.  This is useful for config files.
-{% if keymap is defined %}
+{% if keymap is defined and keymap != 'us' %}
 FILES=(/etc/vconsole.conf)
 {% else %}
 FILES=()
@@ -53,7 +53,7 @@ FILES=()
 #
 ##   NOTE: If you have /usr on a separate partition, you MUST include the
 #    usr and fsck hooks.
-{% if keymap is defined %}
+{% if keymap is defined and keymap != 'us' %}
 HOOKS=(base udev keyboard autodetect modconf block filesystems keymap encrypt fsck)
 {% else %}
 HOOKS=(base udev keyboard autodetect modconf block filesystems encrypt fsck)

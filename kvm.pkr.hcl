@@ -8,6 +8,7 @@ locals {
   ssh_root_password = "root"
   ssh_user_username = "username"
   ssh_user_password = "password"
+  keymap = "fr"
 }
 
 source "qemu" "kvm-init" {
@@ -33,6 +34,9 @@ source "qemu" "kvm-init" {
 
 source "qemu" "kvm-setup" {
   vm_name = "archlinux-workstation"
+  qemuargs = [
+    local.keymap != "us" ? [ "-k", "${local.keymap}" ] : [ "-k", "en-us" ]
+  ]
   headless = "${local.headless}"
   cpus = "2"
   memory = "4096"
@@ -69,7 +73,8 @@ build {
       "-e ansible_ssh_pass=${local.ssh_root_password}",
       "-e crypt_passphrase=${local.crypt_passphrase}",
       "-e unix_username=${local.ssh_user_username}",
-      "-e unix_password=${local.ssh_user_password}"
+      "-e unix_password=${local.ssh_user_password}",
+      "-e keymap=${local.keymap}"
     ]
   }
 
@@ -92,7 +97,8 @@ build {
       "-e ansible_port=${build.Port}",
       "-e ansible_user=${local.ssh_user_username}",
       "-e ansible_ssh_pass=${local.ssh_user_password}",
-      "-e unix_username=${local.ssh_user_username}"
+      "-e unix_username=${local.ssh_user_username}",
+      "-e keymap=${local.keymap}"
     ]
   }
 

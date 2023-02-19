@@ -230,3 +230,8 @@ default_border pixel 2
 
 # Shutdown menu
 bindsym $mod+Escape exec --no-startup-id "systemctl `echo -e 'Suspend\nPoweroff\nReboot' | rofi -theme /usr/share/rofi/themes/Arc-Dark.rasi -dmenu | tr A-Z a-z`"
+{% if keymap is defined and keymap != 'us' %}
+
+# Keymap
+exec_always --no-startup-id setxkbmap {{ keymap }}
+{% endif %}
