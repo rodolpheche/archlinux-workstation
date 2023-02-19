@@ -6,17 +6,20 @@ locals {
   crypt_passphrase = "password"
   ssh_root_username = "root"
   ssh_root_password = "root"
-  ssh_user_username = "username"
-  ssh_user_password = "password"
-  keymap = "fr"
+  unix_username = "username"
+  unix_password = "password"
+  cpus = "4"
+  memory = "8192"
+  disk_size = "20000"
+  keymap = "us"
 }
 
 source "qemu" "kvm-init" {
   vm_name = "archlinux-workstation"
   headless = "${local.headless}"
-  cpus = "2"
-  memory = "4096"
-  disk_size = 20000
+  cpus = "${local.cpus}"
+  memory = "${local.memory}"
+  disk_size = "${local.disk_size}"
   firmware = "${local.firmware}"
   iso_url = "${local.iso_url}"
   iso_checksum = "${local.iso_checksum}"
@@ -38,15 +41,15 @@ source "qemu" "kvm-setup" {
     local.keymap != "us" ? [ "-k", "${local.keymap}" ] : [ "-k", "en-us" ]
   ]
   headless = "${local.headless}"
-  cpus = "2"
-  memory = "4096"
-  disk_size = 20000
+  cpus = "${local.cpus}"
+  memory = "${local.memory}"
+  disk_size = "${local.disk_size}"
   disk_image = true
   firmware = "${local.firmware}"
   iso_url = "dist/base/archlinux-workstation"
   iso_checksum = "none"
-  ssh_password = "${local.ssh_user_password}"
-  ssh_username = "${local.ssh_user_username}"
+  ssh_password = "${local.unix_password}"
+  ssh_username = "${local.unix_username}"
   ssh_wait_timeout = "60m"
   boot_wait = "3s"
   boot_command = [
@@ -72,8 +75,8 @@ build {
       "-e ansible_user=${local.ssh_root_username}",
       "-e ansible_ssh_pass=${local.ssh_root_password}",
       "-e crypt_passphrase=${local.crypt_passphrase}",
-      "-e unix_username=${local.ssh_user_username}",
-      "-e unix_password=${local.ssh_user_password}",
+      "-e unix_username=${local.unix_username}",
+      "-e unix_password=${local.unix_password}",
       "-e keymap=${local.keymap}"
     ]
   }
@@ -95,9 +98,9 @@ build {
       "-D",
       "-e ansible_host=localhost",
       "-e ansible_port=${build.Port}",
-      "-e ansible_user=${local.ssh_user_username}",
-      "-e ansible_ssh_pass=${local.ssh_user_password}",
-      "-e unix_username=${local.ssh_user_username}",
+      "-e ansible_user=${local.unix_username}",
+      "-e ansible_ssh_pass=${local.unix_password}",
+      "-e unix_username=${local.unix_username}",
       "-e keymap=${local.keymap}"
     ]
   }
