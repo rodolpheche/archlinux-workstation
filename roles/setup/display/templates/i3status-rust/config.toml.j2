@@ -1,6 +1,9 @@
+[theme]
 theme = "solarized-dark"
-icons = "awesome"
-icons_format = " <span font_family='NotoSans Nerd Font'>{icon}</span> "
+
+[icons]
+icons = "awesome4"
+[icons.overrides]
 
 [[block]]
 block = "custom"
@@ -9,48 +12,45 @@ interval = "once"
 
 [[block]]
 block = "custom"
-command = "echo \uf17c  Linux `uname -r`"
+command = "echo \uf17c Linux `uname -r`"
 interval = "once"
 
 [[block]]
 block = "pacman"
 interval = 600
-format = "{both} updates available"
-format_singular = "{both} update available"
-format_up_to_date = "system up to date"
-critical_updates_regex = "(linux |linux-lts|linux-zen)"
+format = "$icon $both updates available "
+format_singular = "$icon $both update available "
+format_up_to_date = "$icon system up to date "
+critical_updates_regex = "(linux|linux-lts|linux-zen)"
 # aur_command should output available updates to stdout (ie behave as echo -ne "update\n")
 aur_command = "paru -Qua"
 
 [[block]]
 block = "load"
 interval = 1
-format = "{1m}"
+format = "$icon $1m.eng(w:4) "
 
 [[block]]
 block = "cpu"
 interval = 1
+format = "$icon $utilization "
 
 [[block]]
 block = "memory"
-display_type = "memory"
-clickable = false
-format_mem = "{mem_used_percents} ({mem_used}/{mem_total})"
+format = " $icon $mem_used/$mem_total ($mem_used_percents) "
 
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
-format = "{icon} {used}/{total}"
+format = " $icon $used/$total "
 info_type = "available"
-unit = "GB"
 interval = 20
 warning = 20.0
 alert = 10.0
 
 [[block]]
 block = "net"
-format = "{ip}{speed_down}{speed_up}"
+format = " $icon $ip ^icon_net_down $speed_down ^icon_net_up $speed_up "
 interval = 5
 
 {% if inventory_hostname != "packer" %}
@@ -62,20 +62,15 @@ block = "backlight"
 block = "sound"
 driver = "pulseaudio"
 max_vol = 120
-
-[[block]]
-block = "custom"
-interval = "once"
-json = true
-command = "echo '{\"icon\":\"cogs\", \"state\":\"Info\", \"text\": \"\"}'"
-on_click = "pavucontrol"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
 
 [[block]]
 block = "battery"
-interval = 10
-format = "{percentage} {time}"
+format = " $icon ($percentage) "
 
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d %b %R"
+format = " $icon $timestamp "
