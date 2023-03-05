@@ -7,3 +7,7 @@
       - thunar
       - file-roller
       - vlc
+
+- name: Create Screenshots directory
+  file:
+    path: ~/Pictures/Screenshots

@@ -38,9 +38,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/brightness.sh up
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/brightness.sh down
 
 # Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/$(date).png"
-bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date).png"
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date +%Y-%m-%d\ %Hh%Mm%Ss).png"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d\ %Hh%Mm%Ss).png"
+bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d\ %Hh%Mm%Ss).png"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
