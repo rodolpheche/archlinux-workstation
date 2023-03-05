@@ -7,8 +7,6 @@
       - i3lock
       - xss-lock
       - rofi
-      - maim
-      - xdotool
 
 - name: Create i3 config directory
   file:

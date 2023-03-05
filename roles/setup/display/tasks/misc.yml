@@ -4,6 +4,8 @@
     name:
       - brightnessctl
       - feh
+      - maim
+      - xdotool
       - thunar
       - file-roller
       - vlc
