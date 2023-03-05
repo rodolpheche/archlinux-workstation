@@ -189,6 +189,11 @@ bar {
 ##########
 # CUSTOM #
 ##########
+{% if keymap is defined and keymap != 'us' %}
+
+# Keymap
+exec_always --no-startup-id setxkbmap {{ keymap }}
+{% endif %}
 
 # Disable focus wrapping
 focus_wrapping no
@@ -226,12 +231,9 @@ workspace 1 output {{ primary_monitor }}
 
 # Space between windows
 gaps inner 8
-default_border pixel 2
 
 # Shutdown menu
 bindsym $mod+Escape exec --no-startup-id "systemctl `echo -e 'Suspend\nPoweroff\nReboot' | rofi -theme /usr/share/rofi/themes/Arc-Dark.rasi -dmenu | tr A-Z a-z`"
-{% if keymap is defined and keymap != 'us' %}
 
-# Keymap
-exec_always --no-startup-id setxkbmap {{ keymap }}
-{% endif %}
+# enable window icons for all windows with extra horizontal padding
+for_window [all] title_window_icon padding 3px
