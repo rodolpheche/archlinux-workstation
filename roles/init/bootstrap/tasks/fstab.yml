@@ -1,2 +1,3 @@
 - name: Generate fstab
-  shell: genfstab -U -p /mnt >> /mnt/etc/fstab
+  ansible.builtin.command: genfstab -U -p /mnt >> /mnt/etc/fstab
+  changed_when: true

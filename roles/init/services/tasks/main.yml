@@ -1,7 +1,7 @@
 - name: Enable systemd services
-  systemd:
+  ansible.builtin.systemd:
     name: '{{ item }}'
-    enabled: yes
+    enabled: true
   loop:
     - systemd-timesyncd
     - systemd-networkd

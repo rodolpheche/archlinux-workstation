@@ -1,5 +1,5 @@
 - name: Create the chroot wrapper
-  copy:
+  ansible.builtin.copy:
     src: ansible-python-interpreter-chroot
     dest: /root/
-    mode: 0700
+    mode: '0700'

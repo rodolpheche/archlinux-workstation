@@ -1,4 +1,4 @@
 - name: Install archlinux-keyring package
-  pacman:
+  community.general.pacman:
     name: archlinux-keyring
     update_cache: true

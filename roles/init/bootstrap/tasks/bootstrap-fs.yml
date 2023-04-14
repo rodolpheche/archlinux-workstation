@@ -1,10 +1,13 @@
 - name: Set mirrors
-  shell: reflector --verbose --save /etc/pacman.d/mirrorlist --latest 5 --protocol https --sort age
+  ansible.builtin.command: reflector --verbose --save /etc/pacman.d/mirrorlist --latest 5 --protocol https --sort age
+  changed_when: true
 
 - name: Copy pacman configuration file
-  copy:
+  ansible.builtin.copy:
     src: pacman.conf
     dest: /mnt/etc/
+    mode: '0644'
 
 - name: Bootstrap fs
-  shell: pacstrap /mnt base linux-lts linux-firmware python openssh sudo
+  ansible.builtin.command: pacstrap /mnt base linux-lts linux-firmware python openssh sudo
+  changed_when: true

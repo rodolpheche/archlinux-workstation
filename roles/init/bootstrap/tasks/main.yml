@@ -1,7 +1,20 @@
-- include_tasks: archlinux-keyring.yml
-- include_tasks: create-partitions.yml
-- include_tasks: format-partitions.yml
-- include_tasks: mount-partitions.yml
-- include_tasks: bootstrap-fs.yml
-- include_tasks: ansible-python-interpreter.yml
-- include_tasks: fstab.yml
+- name: Include archlinux-keyring.yml
+  ansible.builtin.include_tasks: archlinux-keyring.yml
+
+- name: Include create-partitions.yml
+  ansible.builtin.include_tasks: create-partitions.yml
+
+- name: Include format-partitions.yml
+  ansible.builtin.include_tasks: format-partitions.yml
+
+- name: Include mount-partitions.yml
+  ansible.builtin.include_tasks: mount-partitions.yml
+
+- name: Include bootstrap-fs.yml
+  ansible.builtin.include_tasks: bootstrap-fs.yml
+
+- name: Include fstab.yml
+  ansible.builtin.include_tasks: fstab.yml
+
+- name: Include ansible-python-interpreter.yml
+  ansible.builtin.include_tasks: ansible-python-interpreter.yml

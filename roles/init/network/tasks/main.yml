@@ -1,9 +1,9 @@
 - name: Install systemd-resolved
-  pacman:
+  community.general.pacman:
     name: systemd-resolvconf
 
 - name: Link resolv on systemd stub for compatibility with traditional Linux programs
-  file:
+  ansible.builtin.file:
     src: /run/systemd/resolve/stub-resolv.conf
     dest: /etc/resolv.conf
     force: true
@@ -11,11 +11,13 @@
     state: link
 
 - name: Copy systemd-networkd configuration file for wired interfaces
-  copy:
+  ansible.builtin.copy:
     src: 10-wired.network
     dest: /etc/systemd/network
+    mode: '0644'
 
 - name: Copy systemd-networkd configuration file for wireless interfaces
-  copy:
+  ansible.builtin.copy:
     src: 20-wireless.network
     dest: /etc/systemd/network
+    mode: '0644'

@@ -1,13 +1,13 @@
 - name: Mount root partition
-  mount:
+  ansible.posix.mount:
     src: /dev/mapper/root
     path: /mnt
     fstype: ext4
     state: mounted
 
 - name: Mount boot partition
-  mount:
-    src: '{{target_boot_part}}'
+  ansible.posix.mount:
+    src: '{{ target_boot_part }}'
     path: /mnt/boot
     fstype: vfat
     state: mounted

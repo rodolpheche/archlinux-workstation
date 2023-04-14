@@ -1,14 +1,16 @@
 - name: Ensure locale exists
-  locale_gen:
+  community.general.locale_gen:
     name: '{{ locale }}'
 
 - name: Copy locale.conf
-  template:
+  ansible.builtin.template:
     src: locale.conf.j2
     dest: /etc/locale.conf
+    mode: '0644'
 
 - name: Copy vconsole.conf
-  template:
+  ansible.builtin.template:
     src: vconsole.conf.j2
     dest: /etc/vconsole.conf
+    mode: '0644'
   when: keymap is defined and keymap != 'us'

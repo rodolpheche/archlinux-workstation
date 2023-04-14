@@ -1,2 +1,3 @@
 - name: Install systemd-boot to esp
-  shell: bootctl install
+  ansible.builtin.command: bootctl install
+  changed_when: true
