@@ -25,9 +25,9 @@
   vars:
     ansible_user: '{{ unix_username }}'
     ansible_ssh_pass: '{{ unix_password }}'
-  become: yes
+  become: true
   tasks:
     - name: Disable ssh systemd services
-      systemd:
-        name: 'sshd'
-        enabled: no
+      ansible.builtin.systemd:
+        name: sshd
+        enabled: false
