@@ -8,6 +8,7 @@ locals {
   ssh_root_password = "root"
   unix_username = "username"
   unix_password = "password"
+  vm_name = "archlinux-workstation"
   cpus = "4"
   memory = "8192"
   disk_size = "20000"
@@ -15,7 +16,7 @@ locals {
 }
 
 source "qemu" "kvm-init" {
-  vm_name = "archlinux-workstation"
+  vm_name = "${local.vm_name}"
   headless = "${local.headless}"
   cpus = "${local.cpus}"
   memory = "${local.memory}"
@@ -36,7 +37,7 @@ source "qemu" "kvm-init" {
 }
 
 source "qemu" "kvm-setup" {
-  vm_name = "archlinux-workstation"
+  vm_name = "${local.vm_name}"
   qemuargs = [
     local.keymap != "us" ? [ "-k", "${local.keymap}" ] : [ "-k", "en-us" ]
   ]
@@ -66,7 +67,11 @@ build {
   provisioner "ansible" {
     playbook_file = "init.yml"
     inventory_file = "inventories/packer"
-    ansible_env_vars = ["ANSIBLE_FORCE_COLOR=1"]
+    ansible_env_vars = [
+      "ANSIBLE_FORCE_COLOR=1",
+      "ANSIBLE_DISPLAY_OK_HOSTS=1",
+      "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
+    ]
     extra_arguments = [
       #"-vvv",
       "-D",
@@ -92,7 +97,11 @@ build {
   provisioner "ansible" {
     playbook_file = "setup.yml"
     inventory_file = "inventories/packer"
-    ansible_env_vars = ["ANSIBLE_FORCE_COLOR=1"]
+    ansible_env_vars = [
+      "ANSIBLE_FORCE_COLOR=1",
+      "ANSIBLE_DISPLAY_OK_HOSTS=1",
+      "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
+    ]
     extra_arguments = [
       #"-vvv",
       "-D",
