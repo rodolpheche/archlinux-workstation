@@ -41,8 +41,8 @@ Feel free to fork and custom it for your needs.
 - Display
   - server: Xorg
   - desktop: i3
-  - menu: rofi
   - lock: i3lock
+  - menu: rofi
 - GUI
   - terminal: alacritty / tmux
   - browser: brave
