@@ -72,6 +72,7 @@ build {
       "ANSIBLE_DISPLAY_OK_HOSTS=1",
       "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
     ]
+    ansible_ssh_extra_args = ["-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"]
     extra_arguments = [
       #"-vvv",
       "-D",
@@ -102,6 +103,7 @@ build {
       "ANSIBLE_DISPLAY_OK_HOSTS=1",
       "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
     ]
+    ansible_ssh_extra_args = ["-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"]
     extra_arguments = [
       #"-vvv",
       "-D",
