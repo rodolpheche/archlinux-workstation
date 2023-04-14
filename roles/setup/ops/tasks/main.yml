@@ -1,52 +1,64 @@
 - name: Install ops packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
-    - edk2-ovmf
-    - libvirt
-    - libguestfs
-    - virt-manager
-    - virt-viewer
-    - qemu
-    - qemu-ui-gtk
-    - packer
-    - terraform
-    - ansible
-    - sshpass
-    - python-passlib
-    - docker
-    - docker-compose
+      - edk2-ovmf
+      - libvirt
+      - libguestfs
+      - virt-manager
+      - virt-viewer
+      - qemu
+      - qemu-ui-gtk
+      - packer
+      - terraform
+      - ansible
+      - sshpass
+      - python-passlib
+      - docker
+      - docker-compose
+
+# This because of extensive use of the --print-format :
+# https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
+- name: Install ansible-completion-git AUR package
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask ansible-completion-git
+  args:
+    creates: /usr/share/bash-completion/completions/ansible
 
 - name: Enable libvirtd systemd service
-  become: yes
-  systemd:
+  become: true
+  ansible.builtin.systemd:
     name: libvirtd
-    enabled: yes
-    state: started
+    enabled: true
 
 - name: Copy bridge.conf
-  become: yes
-  copy:
+  become: true
+  ansible.builtin.copy:
     src: bridge.conf
     dest: /etc/qemu/bridge.conf
+    mode: '0644'
 
 - name: Add user to libvirt group
-  become: yes
-  user:
+  become: true
+  ansible.builtin.user:
     name: '{{ unix_username }}'
     groups: libvirt
-    append: yes
+    append: true
 
 - name: Enable docker systemd service
-  become: yes
-  systemd:
+  become: true
+  ansible.builtin.systemd:
     name: docker
-    enabled: yes
-    state: started
+    enabled: true
 
 - name: Add user to docker group
-  become: yes
-  user:
+  become: true
+  ansible.builtin.user:
     name: '{{ unix_username }}'
     groups: docker
-    append: yes
+    append: true
+
+- name: Copy ansible bashrc
+  ansible.builtin.copy:
+    src: ansible.bashrc
+    dest: ~/.bashrc.d/
+    mode: '0644'

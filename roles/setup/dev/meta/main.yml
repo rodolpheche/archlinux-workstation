@@ -1,3 +1,11 @@
+galaxy_info:
+  min_ansible_version: '2.9'
+  author: Rodolphe CHAIGNEAU
+  description: Install development tools
+  license: MIT
+  platforms:
+    - name: ArchLinux
+
 dependencies:
   - role: dotfiles
   - role: aur

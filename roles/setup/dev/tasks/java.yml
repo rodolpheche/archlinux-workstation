@@ -1,6 +1,6 @@
 - name: Install java packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - jdk11-openjdk
       - maven

@@ -1,23 +1,25 @@
 - name: Copy .bashrc
-  copy:
+  ansible.builtin.copy:
     src: .bashrc
     dest: ~/
+    mode: '644'
 
 - name: Copy .bash_profile
-  copy:
+  ansible.builtin.copy:
     src: .bash_profile
     dest: ~/
+    mode: '644'
 
 - name: Create .bashrc.d directory
-  file:
+  ansible.builtin.file:
     path: ~/.bashrc.d
-    mode: 0700
+    mode: '0755'
     force: true
     state: directory
 
 - name: Create .bash_profile.d directory
-  file:
+  ansible.builtin.file:
     path: ~/.bash_profile.d
-    mode: 0700
+    mode: '0755'
     force: true
     state: directory

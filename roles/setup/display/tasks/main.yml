@@ -1,3 +1,8 @@
-- include_tasks: X.yml
-- include_tasks: i3.yml
-- include_tasks: misc.yml
+- name: Include X.yml
+  ansible.builtin.include_tasks: X.yml
+
+- name: Include i3.yml
+  ansible.builtin.include_tasks: i3.yml
+
+- name: Include misc.yml
+  ansible.builtin.include_tasks: misc.yml

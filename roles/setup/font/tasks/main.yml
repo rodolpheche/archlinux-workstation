@@ -1,6 +1,6 @@
 - name: Install packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - awesome-terminal-fonts
       - ttf-dejavu
@@ -12,15 +12,26 @@
 
 # This because of extensive use of the --print-format :
 # https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
-- name: Install ttf-ubraille AUR package
-  shell: paru -Syu --noconfirm --nouseask ttf-ubraille
+- name: Install ttf-ubraille AUR packages
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask ttf-ubraille
+  args:
+    creates: /usr/share/fonts/TTF/UBraille.ttf
+
+# This because of extensive use of the --print-format :
+# https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
+- name: Install ttf-font-awesome-6 AUR packages
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask ttf-font-awesome-6
+  args:
+    creates: /usr/share/fonts/TTF/fa5-regular-400.ttf
 
 - name: Create fontconfig directory
-  file:
+  ansible.builtin.file:
     path: ~/.config/fontconfig/
     state: directory
+    mode: '755'
 
 - name: Copy fonts.conf
-  copy:
+  ansible.builtin.copy:
     src: fonts.conf
     dest: ~/.config/fontconfig/fonts.conf
+    mode: '644'

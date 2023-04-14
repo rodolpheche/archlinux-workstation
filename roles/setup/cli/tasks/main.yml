@@ -1,6 +1,6 @@
 - name: Install cli packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - bash-completion
       - btop
@@ -15,17 +15,20 @@
       - fwupd
 
 - name: Copy bat bashrc
-  copy:
+  ansible.builtin.copy:
     src: bat.bashrc
     dest: ~/.bashrc.d/
+    mode: '0644'
 
 - name: Copy exa bashrc
-  copy:
+  ansible.builtin.copy:
     src: exa.bashrc
     dest: ~/.bashrc.d/
+    mode: '0644'
 
 
 - name: Copy fzf bashrc
-  copy:
+  ansible.builtin.copy:
     src: fzf.bashrc
     dest: ~/.bashrc.d/
+    mode: '0644'

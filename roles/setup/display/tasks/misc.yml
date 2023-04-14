@@ -1,6 +1,6 @@
 - name: Install misc
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - brightnessctl
       - feh
@@ -11,5 +11,7 @@
       - vlc
 
 - name: Create Screenshots directory
-  file:
+  ansible.builtin.file:
     path: ~/Pictures/Screenshots
+    state: directory
+    mode: '0755'

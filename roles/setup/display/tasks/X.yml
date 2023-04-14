@@ -1,6 +1,6 @@
 - name: Install X
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - xorg-server
       - xorg-xinit
@@ -8,6 +8,14 @@
       - autorandr
 
 - name: Copy .xinitrc
-  template:
-    src: .xinitrc.j2
-    dest: ~/.xinitrc
+  ansible.builtin.copy:
+    src: xorg/.xinitrc
+    dest: ~/
+    mode: '0644'
+
+- name: Copy synaptics Xorg conf
+  become: true
+  ansible.builtin.copy:
+    src: xorg/synaptics.conf
+    dest: /etc/X11/xorg.conf.d/70-synaptics.conf
+    mode: '0644'

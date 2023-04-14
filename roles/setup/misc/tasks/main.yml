@@ -1,6 +1,6 @@
 - name: Install misc packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - reflector
       - xf86-input-synaptics
@@ -17,26 +17,27 @@
       - openbsd-netcat
 
 - name: Enable iwd systemd service
-  become: yes
-  systemd:
+  become: true
+  ansible.builtin.systemd:
     name: iwd
-    enabled: yes
-    state: started
+    enabled: true
 
 - name: Enable bluetooth systemd service
-  become: yes
-  systemd:
+  become: true
+  ansible.builtin.systemd:
     name: bluetooth
-    enabled: yes
-    state: started
+    enabled: true
 
 - name: Install ebtables
-  become: yes
-  shell: yes | pacman -Sy ebtables
+  become: true
+  ansible.builtin.shell: yes | pacman -Sy ebtables
+  args:
+    creates: /usr/bin/ebtables
+  tags:
+    - skip_ansible_lint # can't use set -o pipefail
 
 - name: Enable reflector systemd service
-  become: yes
-  systemd:
+  become: true
+  ansible.builtin.systemd:
     name: reflector.timer
-    enabled: yes
-    state: started
+    enabled: true

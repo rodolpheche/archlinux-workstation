@@ -1,15 +1,22 @@
 # This because of extensive use of the --print-format :
 # https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
 - name: Install nvm AUR package
-  shell: paru -Syu --noconfirm --nouseask nvm
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask nvm
+  args:
+    creates: /usr/share/nvm/nvm.sh
 
 - name: Install Node
-  shell: source /usr/share/nvm/init-nvm.sh && nvm install node && nvm alias default node
+  ansible.builtin.shell: source /usr/share/nvm/init-nvm.sh && nvm install node && nvm alias default node
+  args:
+    creates: ~/.nvm/versions/node/*/bin/node
 
 - name: Install yarn
-  shell: source /usr/share/nvm/init-nvm.sh && npm install -g yarn
+  ansible.builtin.shell: source /usr/share/nvm/init-nvm.sh && npm install -g yarn
+  args:
+    creates: ~/.nvm/versions/node/*/bin/yarn
 
 - name: Copy nvm bashrc
-  copy:
+  ansible.builtin.copy:
     src: nvm.bashrc
     dest: ~/.bashrc.d/
+    mode: '0644'

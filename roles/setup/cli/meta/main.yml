@@ -1,2 +1,10 @@
+galaxy_info:
+  min_ansible_version: '2.9'
+  author: Rodolphe CHAIGNEAU
+  description: Install some useful CLIs
+  license: MIT
+  platforms:
+    - name: ArchLinux
+
 dependencies:
   - role: dotfiles

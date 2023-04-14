@@ -1,6 +1,6 @@
 - name: Install packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - alacritty
       - tmux
@@ -8,24 +8,30 @@
 # This because of extensive use of the --print-format :
 # https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
 - name: Install tmux-bash-completion-git AUR package
-  shell: paru -Syu --noconfirm --nouseask tmux-bash-completion-git
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask tmux-bash-completion-git
+  args:
+    creates: /usr/share/bash-completion/completions/tmux
 
 - name: Copy ps1.bashrc
-  copy:
+  ansible.builtin.copy:
     src: ps1.bashrc
     dest: ~/.bashrc.d/
+    mode: '644'
 
 - name: Copy tmux conf
-  copy:
+  ansible.builtin.copy:
     src: tmux.conf
     dest: ~/.config/tmux/
+    mode: '644'
 
 - name: Copy alacritty conf
-  copy:
+  ansible.builtin.copy:
     src: alacritty.yml
     dest: ~/.config/alacritty/
+    mode: '644'
 
 - name: Copy alacritty bash_profile
-  copy:
+  ansible.builtin.copy:
     src: alacritty.bash_profile
     dest: ~/.bash_profile.d/
+    mode: '644'

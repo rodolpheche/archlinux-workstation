@@ -1,14 +1,16 @@
 - name: Install git
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name: git
 
 - name: Create git config directory
-  file:
+  ansible.builtin.file:
     path: ~/.config/git
     state: directory
+    mode: '755'
 
 - name: Copy git config
-  template:
+  ansible.builtin.template:
     src: config.j2
     dest: ~/.config/git/config
+    mode: '644'

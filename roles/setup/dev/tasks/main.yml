@@ -1,3 +1,8 @@
-- include_tasks: misc.yml
-- include_tasks: node.yml
-- include_tasks: java.yml
+- name: Include misc.yml
+  ansible.builtin.include_tasks: misc.yml
+
+- name: Include node.yml
+  ansible.builtin.include_tasks: node.yml
+
+- name: Include java.yml
+  ansible.builtin.include_tasks: java.yml

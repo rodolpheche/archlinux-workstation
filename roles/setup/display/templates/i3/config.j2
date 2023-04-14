@@ -207,28 +207,6 @@ mouse_warping none
 # Background
 exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/linux.png
 
-# Disable touchpad when typing
-exec_always --no-startup-id synclient TouchpadOff=0
-
-# Natural scrolling
-exec_always --no-startup-id synclient VertScrollDelta=-27
-exec_always --no-startup-id synclient HorizScrollDelta=-27
-
-# Enable tap to click
-exec_always --no-startup-id synclient TapButton1=1
-
-# Enable 2 fingers tap to right click
-exec_always --no-startup-id synclient TapButton2=3
-
-# Enable 3 fingers tap to middle click
-exec_always --no-startup-id synclient TapButton3=2
-
-# Disable tap to click when typing
-exec_always --no-startup-id syndaemon -i .5 -K -t -R -d
-
-# Specify afinity for workspaces & monitors
-workspace 1 output {{ primary_monitor }}
-
 # Space between windows
 gaps inner 8
 

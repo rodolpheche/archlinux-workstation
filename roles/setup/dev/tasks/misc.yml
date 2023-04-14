@@ -1,10 +1,15 @@
 - name: Install misc packages
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name:
       - nasm
 
 # This because of extensive use of the --print-format :
 # https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
 - name: Install gef-git AUR package
-  shell: paru -Syu --noconfirm --nouseask gef-git
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask gef-git
+  args:
+    creates: /usr/share/gef/gef.py
+  # TODO add:
+  #   echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+  # to .gdbinit

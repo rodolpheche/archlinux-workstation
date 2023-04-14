@@ -1,4 +1,6 @@
 # This because of extensive use of the --print-format :
 # https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
 - name: Install brave AUR package
-  shell: paru -Syu --noconfirm --nouseask brave-bin
+  ansible.builtin.command: paru -Syu --noconfirm --nouseask brave-bin
+  args:
+    creates: /usr/bin/brave

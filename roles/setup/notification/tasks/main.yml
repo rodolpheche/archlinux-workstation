@@ -1,9 +1,10 @@
 - name: Install dunst
-  become: yes
-  pacman:
+  become: true
+  community.general.pacman:
     name: dunst
 
 - name: Copy dunstrc config file
-  copy:
+  ansible.builtin.copy:
     src: dunstrc
     dest: ~/.config/dunst/
+    mode: '644'
