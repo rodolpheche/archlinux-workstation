@@ -13,3 +13,9 @@
   # TODO add:
   #   echo source ~/.gdbinit-gef.py >> ~/.gdbinit
   # to .gdbinit
+
+- name: Copy .gdbinit config
+  ansible.builtin.copy:
+    src: .gdbinit
+    dest: ~/
+    mode: '0644'
