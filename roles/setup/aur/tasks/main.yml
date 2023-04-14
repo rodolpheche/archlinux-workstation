@@ -14,16 +14,15 @@
 
 
 - name: Clone paru repository
-  become: true
   ansible.builtin.git:
     repo: https://aur.archlinux.org/paru.git
-    dest: /usr/src/paru
+    dest: ~/.local/share/src/paru
   tags:
     - skip_ansible_lint # check latest version of git repository
 
 - name: Make paru
   ansible.builtin.command: makepkg -si --noconfirm
   args:
-    chdir: /usr/src/paru
+    chdir: ~/.local/share/src/paru
     creates: /usr/bin/paru
   ignore_errors: '{{ ansible_check_mode }}'
