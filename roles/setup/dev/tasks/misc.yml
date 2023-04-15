@@ -14,7 +14,7 @@
   #   echo source ~/.gdbinit-gef.py >> ~/.gdbinit
   # to .gdbinit
 
-- name: Copy .gdbinit config
+- name: Copy .gdbinit
   ansible.builtin.copy:
     src: .gdbinit
     dest: ~/
