@@ -8,7 +8,7 @@
 - name: Setup rust
   ansible.builtin.command: rustup default stable
   args:
-    creates: /usr/bin/rustc
+    creates: ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/
 
 - name: Copy rust bash_profile
   ansible.builtin.copy:
