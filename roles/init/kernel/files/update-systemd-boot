@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+KERNEL_VERSION="$(ls /lib/modules | tail -1)"
+MACHINE_ID="$(cat /etc/machine-id)"
+
+kernel-install add "$KERNEL_VERSION" /boot/vmlinuz-linux-lts
+
+ls "/boot/$MACHINE_ID/" | grep -v "$KERNEL_VERSION" | xargs -r -n1 sudo kernel-install remove
