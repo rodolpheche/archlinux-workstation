@@ -90,7 +90,7 @@ Feel free to fork and custom it for your needs.
 
 This is based on the [qemu](https://www.packer.io/plugins/builders/qemu) Packer builder
 
-If the file `/usr/share/edk2-ovmf/x64/OVMF.fd` doesn't exist on your system, find its right location, then adapt the `firwmare` path in the `kvm.pkr.hcl` file.
+If the file `/usr/share/edk2-ovmf/x64/OVMF.fd` doesn't exist on your system, find its right location, then adapt the `firwmare` path in the `config.pkr.hcl` file.
 
 Then, build the qcow images with command:
 
