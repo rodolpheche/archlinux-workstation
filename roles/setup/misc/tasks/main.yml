@@ -21,12 +21,14 @@
   ansible.builtin.systemd:
     name: iwd
     enabled: true
+  ignore_errors: '{{ ansible_check_mode }}'
 
 - name: Enable bluetooth systemd service
   become: true
   ansible.builtin.systemd:
     name: bluetooth
     enabled: true
+  ignore_errors: '{{ ansible_check_mode }}'
 
 - name: Install ebtables
   become: true
@@ -41,3 +43,4 @@
   ansible.builtin.systemd:
     name: reflector.timer
     enabled: true
+  ignore_errors: '{{ ansible_check_mode }}'

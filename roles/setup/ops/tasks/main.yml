@@ -29,6 +29,7 @@
   ansible.builtin.systemd:
     name: libvirtd
     enabled: true
+  ignore_errors: '{{ ansible_check_mode }}'
 
 - name: Copy bridge.conf
   become: true
@@ -43,12 +44,14 @@
     name: '{{ unix_username }}'
     groups: libvirt
     append: true
+  ignore_errors: '{{ ansible_check_mode }}'
 
 - name: Enable docker systemd service
   become: true
   ansible.builtin.systemd:
     name: docker
     enabled: true
+  ignore_errors: '{{ ansible_check_mode }}'
 
 - name: Add user to docker group
   become: true
@@ -56,6 +59,7 @@
     name: '{{ unix_username }}'
     groups: docker
     append: true
+  ignore_errors: '{{ ansible_check_mode }}'
 
 - name: Copy ansible bashrc
   ansible.builtin.copy:
