@@ -163,7 +163,7 @@ Then, login:
 Download Archlinux live iso at https://archlinux.org/download/:
 
 ```bash
-curl https://mir.archlinux.fr/iso/latest/archlinux-`date +%Y.%m`.01-x86_64.iso -o /tmp/archlinux.iso
+curl https://mir.archlinux.fr/iso/latest/archlinux-x86_64.iso -o /tmp/archlinux.iso
 ```
 
 Then, copy it on a USB device with `dd`:
