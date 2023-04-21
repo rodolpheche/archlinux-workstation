@@ -216,6 +216,10 @@ bindsym $mod+Escape exec --no-startup-id "systemctl `echo -e 'Suspend\nPoweroff\
 # enable window icons for all windows with extra horizontal padding
 for_window [all] title_window_icon padding 3px
 
+# Specify afinity for workspaces & monitors
+workspace 1 output primary
+workspace 2 output secondary
+
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
