@@ -1,0 +1,20 @@
+name: Main
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  packer_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v1
+
+      - name: Packer build
+        uses: enr0s/packer-qemu-action@v1.0
+        with:
+          templateFile: 'config.pkr.hcl'
+          workingDir: '.'
