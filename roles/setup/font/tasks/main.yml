@@ -3,6 +3,7 @@
   community.general.pacman:
     name:
       - awesome-terminal-fonts
+      - ttf-font-awesome
       - ttf-dejavu
       - ttf-droid
       - ttf-nerd-fonts-symbols-common
@@ -16,13 +17,6 @@
   ansible.builtin.command: paru -Syu --noconfirm --nouseask ttf-ubraille
   args:
     creates: /usr/share/fonts/TTF/UBraille.ttf
-
-# This because of extensive use of the --print-format :
-# https://docs.ansible.com/ansible/latest/collections/community/general/pacman_module.html#parameter-executable
-- name: Install ttf-font-awesome-6 AUR packages
-  ansible.builtin.command: paru -Syu --noconfirm --nouseask ttf-font-awesome-6
-  args:
-    creates: /usr/share/fonts/TTF/fa5-regular-400.ttf
 
 - name: Create fontconfig directory
   ansible.builtin.file:
