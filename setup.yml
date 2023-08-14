@@ -15,10 +15,10 @@
     - role: git
     - role: misc
     - role: notification
+    - role: ops
     - role: rust
     - role: sound
     - role: term
-    - role: ops
 
 - name: Disable ssh
   hosts: all
