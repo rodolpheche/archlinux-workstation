@@ -12,7 +12,6 @@
       - fakeroot
       - pkg-config
 
-
 - name: Clone paru repository
   ansible.builtin.git:
     repo: https://aur.archlinux.org/paru.git
