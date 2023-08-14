@@ -1,8 +1,25 @@
+packer {
+  required_plugins {
+    ansible = {
+      version = ">= 1.1.0"
+      source  = "github.com/hashicorp/ansible"
+    }
+    qemu = {
+      version = ">= 1.0.9"
+      source  = "github.com/hashicorp/qemu"
+    }
+  }
+}
+
+data "http" "example" {
+  url = "https://mir.archlinux.fr/iso/latest/sha256sums.txt"
+}
+
 locals {
   firmware = "/usr/share/edk2-ovmf/x64/OVMF.fd"
-  iso_url = "https://mir.archlinux.fr/iso/2023.02.01/archlinux-2023.02.01-x86_64.iso"
-  iso_checksum = "c30718ab8e4af1a3b315ce8440f29bc3631cb67e9656cfe1e0b9fc81a5c6bf9c"
-  headless = true
+  iso_url = "https://mir.archlinux.fr/iso/latest/archlinux-x86_64.iso"
+  iso_checksum = "${split("  ", split("\n", data.http.example.body)[1])[0] }"
+  headless = false
   crypt_passphrase = "password"
   ssh_root_username = "root"
   ssh_root_password = "root"
@@ -72,7 +89,11 @@ build {
       "ANSIBLE_DISPLAY_OK_HOSTS=1",
       "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
     ]
-    ansible_ssh_extra_args = ["-o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"]
+    ansible_ssh_extra_args = [
+      "-o IdentitiesOnly=yes",
+      "-o StrictHostKeyChecking=no",
+      "-o UserKnownHostsFile=/dev/null"
+    ]
     extra_arguments = [
       #"-vvv",
       "-D",
@@ -103,7 +124,11 @@ build {
       "ANSIBLE_DISPLAY_OK_HOSTS=1",
       "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
     ]
-    ansible_ssh_extra_args = ["-o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"]
+    ansible_ssh_extra_args = [
+      "-o IdentitiesOnly=yes",
+      "-o StrictHostKeyChecking=no",
+      "-o UserKnownHostsFile=/dev/null"
+    ]
     extra_arguments = [
       #"-vvv",
       "-D",
