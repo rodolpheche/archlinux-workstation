@@ -2,7 +2,6 @@
   become: true
   community.general.pacman:
     name:
-      - vi
       - vim
       - code
 
