@@ -3,3 +3,9 @@ Name=wlan*
 
 [Network]
 DHCP=yes
+
+[DHCPv4]
+RouteMetric=20
+
+[IPv6AcceptRA]
+RouteMetric=20
