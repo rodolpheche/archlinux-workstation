@@ -19,7 +19,7 @@ locals {
   firmware = "/usr/share/edk2-ovmf/x64/OVMF.fd"
   iso_url = "https://mir.archlinux.fr/iso/latest/archlinux-x86_64.iso"
   iso_checksum = "${split("  ", split("\n", data.http.example.body)[1])[0] }"
-  headless = false
+  headless = true
   crypt_passphrase = "password"
   ssh_root_username = "root"
   ssh_root_password = "root"
@@ -89,13 +89,8 @@ build {
       "ANSIBLE_DISPLAY_OK_HOSTS=1",
       "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
     ]
-    ansible_ssh_extra_args = [
-      "-o IdentitiesOnly=yes",
-      "-o StrictHostKeyChecking=no",
-      "-o UserKnownHostsFile=/dev/null"
-    ]
     extra_arguments = [
-      #"-vvv",
+      // "-vvv",
       "-D",
       "-e ansible_host=localhost",
       "-e ansible_port=${build.Port}",
@@ -124,13 +119,8 @@ build {
       "ANSIBLE_DISPLAY_OK_HOSTS=1",
       "ANSIBLE_DISPLAY_SKIPPED_HOSTS=1"
     ]
-    ansible_ssh_extra_args = [
-      "-o IdentitiesOnly=yes",
-      "-o StrictHostKeyChecking=no",
-      "-o UserKnownHostsFile=/dev/null"
-    ]
     extra_arguments = [
-      #"-vvv",
+      // "-vvv",
       "-D",
       "-e ansible_host=localhost",
       "-e ansible_port=${build.Port}",
