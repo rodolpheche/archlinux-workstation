@@ -11,4 +11,4 @@ alias grep='grep --color'
 for file in ~/.bashrc.d/*.bashrc
 do
   source "$file"
-done
+done >/dev/null 2>&1
